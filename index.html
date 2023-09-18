@@ -75,6 +75,27 @@
 <script src="https://unpkg.com/jquery"></script>
 <script>
   // Add your code here!
+  // Part 1 - Add img-center class to img inside article tag.
+  $('article img') // Comma vs no comma between tags
+    .addClass('img-center');
+
+  // Part 2 - Remove last paragraph inside article tag.
+  $('article p:last-child')
+    .remove();
+
+  // Part 3 - Make title random font size between 0 and 100.
+  const randomFontsize = Math.ceil(Math.random() * 100);
+  $('#title')
+    .css("fontSize", `${randomFontsize}px`);
+
+  // Part 4 - Add an item to end of list.
+  const $newListItem = $('<li>');
+  $newListItem.text('Our cool new list item.')
+
+  $('aside ol')
+    .append($newListItem);
+
+
 </script>
 </body>
 
