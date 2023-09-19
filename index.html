@@ -74,7 +74,7 @@
   <script>
     // Add your code here!
     // Part 1 - Add img-center class to img inside article tag.
-    $('article img') // Comma vs no comma between tags
+    $('article > img') // Comma vs no comma between tags
       .addClass('img-center');
 
     // Part 2 - Remove last paragraph inside article tag.
@@ -84,43 +84,41 @@
     // Part 3 - Make title random font size between 0 and 100.
     const randomFontsize = Math.ceil(Math.random() * 100);
     $('#title')
-      .css("fontSize", `${randomFontsize}px`);
+      .css("font-size", `${randomFontsize}px`);
 
     // Part 4 - Add an item to end of list.
-    const $newListItem = $('<li>');
-    $newListItem.text('Our cool new list item.');
 
-    $('aside ol')
-      .append($newListItem);
+    $('aside > ol').append($('<li>', {text: 'Our cool list item.'}));
 
     // Part 5 - Delete children of aside and add a paragraph
     // could we do this all one chain?
-    $('aside')
-      .children()
-      .remove();
+    $('aside').empty()
 
-    const $newParagraph = $('<p>');
-    $newParagraph.text('We are extremely sorry for the existence of the list :(');
-    $('aside')
-      .append($newParagraph);
+    const paragraphText = 'We are extremely sorry for the existence of the list :(';
+    $('aside').append($('<p>', {text: paragraphText}));
 
     // Part 6 -
     // add event listener to form, so that any time a value changes
     // our color change function
 
     function changeBGColor() {
-      const $red = $(".form-control")[0].value
-      const $blue = $(".form-control")[1].value
-      const $green = $(".form-control")[2].value
+      const $red = $('.form-control').eq(0).val();
+      const $blue = $('.form-control').eq(1).val();
+      const $green = $('.form-control').eq(2).val();
 
       $('body')
-      .css("backgroundColor", `rgb(${$red}, ${$green}, ${$blue})`);
+        .css("backgroundColor", `rgb(${$red}, ${$green}, ${$blue})`);
     }
 
 
-    $(".row mb-5 .col-sm-4")
+    $(".row mb-5, .col-sm-4")
+      .on("change", ".form-control", changeBGColor);
 
+    // Part 7
+    // Add an event listener so that when you click on the image, it is removed
+    // from the DOM.
 
+    $('img').on("click", (evt) => $(evt.target).remove());
 
   </script>
 </body>
